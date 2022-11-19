@@ -1,13 +1,15 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
-import VectorBrand from './vector-brand'
+import VectorBrand from './svgs/vector-brand'
 import { PlusIcon } from '@heroicons/react/24/solid'
+import { format } from 'date-fns'
+import VectorFeboy from './svgs/vector-feboy'
 
 function Layout({ children }) {
     const router = useRouter()
-    return <div className='container dark:text-neutral-200 text-neutral-800'>
-        <header className='p-2 bg-slate-200 dark:bg-slate-800 print:hidden'>
+    return <div className='container'>
+        <header className='m-1 print:hidden'>
             <nav className='flex flex-row justify-between items-end'>
                 <div className='flex-none'>
                     <Link href="/">
@@ -16,16 +18,23 @@ function Layout({ children }) {
                 </div>
                 <div className='flex-none'>
                     <Link href='/edit' hidden={router.pathname === '/edit'}>
-                        <div className='my-box-primary'>
-                            <PlusIcon className='w-6 h-6 inline' />
-                            <span className='inline-block align-middle'>租约</span>
+                        <div className='group px-2 py-1 rounded hover:bg-slate-600 active:bg-stone-700                         '>
+                            <PlusIcon className='w-6 h-6 stroke-2 inline 
+                            group-hover:stroke-amber-200 group-active:stroke-amber-300' />
+                            <span className='inline-block font-medium align-middle 
+                            group-hover:text-amber-200 group-active:text-amber-300'>合同</span>
                         </div>
                     </Link>
                 </div>
             </nav>
         </header>
-        <main className='p-2'>{children}</main>
-        {/* <footer className='p-2 bg-slate-200 dark:bg-slate-800 print:hidden'></footer> */}
+        <main className='m-1 min-h-screen'>{children}</main>
+        <footer className='m-1 print:hidden'>
+            <div className='p-1 flex flex-row gap-1'>
+                <VectorFeboy factor={1} />
+                {format(new Date(), 'yyyy')} by Feboy
+            </div>
+        </footer>
     </div>
 }
 
