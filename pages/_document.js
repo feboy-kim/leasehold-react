@@ -5,7 +5,7 @@ function Document() {
         <Head>
             <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png"/>
         </Head>
-        <body className='bg-stone-100 text-slate-600'>
+        <body className='text-bg-primary'>
             <Main />
             <NextScript />
         </body>

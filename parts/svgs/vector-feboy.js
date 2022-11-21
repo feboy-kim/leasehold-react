@@ -12,8 +12,8 @@ function VectorFeboy({ factor }) {
             </linearGradient>
         </defs>
         <title>Feboy</title>
-        <path d={pathData} stroke='url(#lg)' strokeWidth={factor} fill='transparent' />
-        <circle cx={12} cy={12} r='11' stroke='url(#lg)' strokeWidth={factor} fill='transparent' />
+        <path d={pathData} stroke='url(#lg)' strokeWidth={factor + 1} fill='transparent' />
+        <circle cx={12} cy={12} r='12' stroke='url(#lg)' strokeWidth={factor + 1} fill='transparent' />
     </svg>
 }
 
