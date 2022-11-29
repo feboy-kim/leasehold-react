@@ -2,9 +2,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import VectorBrand from './svgs/vector-brand'
-import { PlusIcon } from '@heroicons/react/24/solid'
+import { PlusIcon } from '@heroicons/react/24/outline'
 import { format } from 'date-fns'
 import VectorFeboy from './svgs/vector-feboy'
+import AccentIcon from './edit/accent-icon'
 
 function Layout({ children, warning }) {
     const router = useRouter()
@@ -16,18 +17,15 @@ function Layout({ children, warning }) {
                         <VectorBrand factor={2} />
                     </Link>
                 </div>
-                <p className='flex-1 p-1 text-red-600 dark:text-red-300 text-center align-middle'>{warning}</p>
-                <div className='flex-none'>
+                <p className='flex-1 p-1 text-warning-error text-center align-middle'>{warning}</p>
+                <div className='flex-none flex'>
                     <Link href='/edit' hidden={router.pathname.startsWith('/edit')}>
-                        <div className='px-2 py-1 rounded hover:text-bg-accent active:border-2'>
-                            <PlusIcon className='w-6 h-6 stroke-2 inline' />
-                            <span className='inline-block font-semibold align-middle'>合同</span>
-                        </div>
+                        <AccentIcon picon={PlusIcon} label='合同' />
                     </Link>
                 </div>
             </nav>
         </header>
-        <main className='m-1 text-bg-secondary'>
+        <main className='m-1'>
             {children}
         </main>
         <footer className='m-1 print:hidden'>

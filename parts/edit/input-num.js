@@ -1,25 +1,33 @@
 import PropTypes from 'prop-types'
+import { useState } from 'react'
 
-function InputNum({ inumber, postfix, widthClass, onChanged }) {
-    return <div className='flex flex-row w-fit p-1'>
-        <span className='flex-none w-fit p-1'>{inumber.k}</span>
+function InputNum({ theNumber, caption, maxNumber, postfix, widthClass, onChanged }) {
+    const [num, setNum] = useState(theNumber)
+
+    return <div className='flex flex-row w-fit items-center'>
+        <span className='flex-none w-fit'>{caption}</span>
         <input type="number" className={`flex-none rounded ${widthClass} px-3 py-2 text-bg-primary text-center`}
-            value={inumber.v} onChange={e => {
+            value={num} onChange={e => {
                 const n = Number(e.target.value)
-                if (!isNaN(n) && n >= 0 && n <= 999999999) onChanged(n)
-            }} min='1' />
-        <span className='flex-none w-fit p-1'>{postfix}</span>
+                if (!isNaN(n) && n >= 0 && n <= maxNumber) setNum(n)
+            }} min={0} max={maxNumber} onBlur={() => {
+                if (num !== theNumber) onChanged(num)
+            }} />
+        <span className='flex-none w-fit'>{postfix}</span>
     </div>
 }
 
 InputNum.propTypes = {
-    inumber: PropTypes.object.isRequired,
+    caption: PropTypes.string.isRequired,
+    theNumber: PropTypes.number.isRequired,
     widthClass: PropTypes.string,
+    maxNumber: PropTypes.number,
     postfix: PropTypes.string.isRequired,
     onChanged: PropTypes.func.isRequired
 }
 InputNum.defaultProps = {
-    widthClass: 'w-20'
+    widthClass: 'w-20',
+    maxNumber: 999999,
 }
 
 export default InputNum

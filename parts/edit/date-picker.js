@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid'
+import { ArrowLeftIcon, ArrowRightIcon, ChevronRightIcon, ChevronUpIcon } from '@heroicons/react/24/solid'
 import { monthSundays, weekDayNames } from '../../models/date-helper'
 import { Popover } from '@headlessui/react'
 import { format, addMonths, subMonths } from 'date-fns'
 
 function ArrowButton({ onClicked, disabled, children }) {
-    return <button className='flex-none p-2 hover:bg-secondary-translucent bg-hover-disabled'
+    return <button className='flex-none p-2 hover:bg-translucent disabled:text-bg-disabled'
         onClick={onClicked} disabled={disabled}>
         {children}
     </button>
@@ -14,7 +14,7 @@ function ArrowButton({ onClicked, disabled, children }) {
 
 function Calendar({ selectedate, onSelected }) {
     const [ymdate, setYmdate] = useState(selectedate)
-    return <div className='text-bg-accent shadow-lg p-6 rounded-lg'>
+    return <div className='text-bg-popover p-6 rounded-lg'>
         <div className='flex justify-between'>
             <ArrowButton onClicked={() => { setYmdate(prev => subMonths(prev, 1)) }} disabled={ymdate < subMonths(new Date(), 2)}>
                 <ArrowLeftIcon className='w-5 h-5' />
@@ -39,7 +39,7 @@ function Calendar({ selectedate, onSelected }) {
                         return prev
                     }, []).map((d, i) => {
                         const useless = d.getMonth() !== ymdate.getMonth()
-                        const tdClass = useless ? '' : 'text-center hover:bg-secondary-translucent'
+                        const tdClass = useless ? '' : 'text-center hover:bg-translucent'
                         const dtClass = d.getTime() !== selectedate.getTime() ? 'p-2' : 'p-2 outline outline-1'
                         return <td className={tdClass} key={i}>
                             <div hidden={useless} onClick={() => {
@@ -62,18 +62,22 @@ function DatePicker({ caption, ymdate, onChanged }) {
         <span className='flex-none w-fit px-1 py-2'>{caption}</span>
         <div className='flex-1'>
             <Popover className='relative'>
-                <Popover.Button className='p-2 m-1 rounded w-36 border hover:border-2 border-accent-translucent'>
-                    {format(ymdate, 'yyyy年MM月dd日')}
-                </Popover.Button>
-                <Popover.Overlay className='fixed inset-1 bg-primary-translucent' />
-                <Popover.Panel className='absolute z-10 w-80'>
-                    {({ close }) =>
-                        <Calendar selectedate={ymdate} onSelected={d => {
-                            onChanged(d)
-                            close()
-                        }} />
-                    }
-                </Popover.Panel>
+                {({ open }) => <>
+                    <Popover.Button className='px-3 py-2 rounded w-fit hover:bg-primary-translucent border-accent-translucent'>
+                        <div className='inline align-middle pr-1'>{format(ymdate, 'yyyy年MM月dd日')}</div>
+                        {open ? <ChevronUpIcon className="h-5 w-5 inline" aria-hidden='true' />
+                            : <ChevronRightIcon className="h-5 w-5 inline" aria-hidden='true' />}
+                    </Popover.Button>
+                    <Popover.Overlay className='fixed inset-1 bg-primary-translucent z-10' />
+                    <Popover.Panel className='absolute z-20 w-80'>
+                        {({ close }) =>
+                            <Calendar selectedate={ymdate} onSelected={d => {
+                                onChanged(d)
+                                close()
+                            }} />
+                        }
+                    </Popover.Panel>
+                </>}
             </Popover>
         </div>
     </div>

@@ -2,18 +2,22 @@ import PropTypes from 'prop-types'
 
 function VectorFeboy({ factor }) {
     const dimension = factor * 24
-    const pathData = `M 4 4 Q 12 12 4 20 M 8 12 L 16 12 M 20 4 Q 12 12 20 20`
+    const pathData = `M 6 6 Q 12 12 6 18 M 10 12 L 16 12 M 16 4 L 16 20`
 
     return <svg width={dimension} height={dimension} viewBox='0,0,24,24' xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <linearGradient id='lg'>
-                <stop stopColor='#93c5fd' offset="0%" />
-                <stop stopColor='#2563eb' offset="100%" />
+            <linearGradient id='lg1'>
+                <stop stopColor='#a5b4fc' offset="0%" />
+                <stop stopColor='#6366f1' offset="100%" />
+            </linearGradient>
+            <linearGradient id='lg2'>
+                <stop stopColor='#a855f7' offset="0%" />
+                <stop stopColor='#d8b4fe' offset="100%" />
             </linearGradient>
         </defs>
         <title>Feboy</title>
-        <path d={pathData} stroke='url(#lg)' strokeWidth={factor + 1} fill='transparent' />
-        <circle cx={12} cy={12} r='12' stroke='url(#lg)' strokeWidth={factor + 1} fill='transparent' />
+        <path d={pathData} stroke='url(#lg2)' strokeWidth={factor + 1} fill='transparent' strokeLinecap='round' />
+        <circle cx={12} cy={12} r='10' stroke='url(#lg1)' strokeWidth={factor} fill='transparent' />
     </svg>
 }
 

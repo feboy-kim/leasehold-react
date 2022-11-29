@@ -1,17 +1,24 @@
 import PropTypes from 'prop-types'
+import { useState } from 'react'
 
 function Fieldata({ fieldata, linage, onChanged }) {
-    return <div className='flex flex-row w-full m-1 px-1'>
-        <span className='flex-none w-fit py-1'>{fieldata.k}</span>
+    const [text, setext] = useState(fieldata.v)
+
+    return <div className='flex flex-row w-full'>
+        <span className='flex-none w-fit self-center'>{fieldata.k}</span>
         {linage > 1
-            ? <textarea value={fieldata.v} className='flex-1 px-3 py-2 m-1 text-bg-primary placeholder:italic'
+            ? <textarea value={text} className='flex-1 px-3 py-2 text-bg-primary placeholder:italic'
                 onChange={e => {
-                    onChanged(e.target.value)
-                }} rows={linage} placeholder={fieldata.p} />
-            : <input type='text' value={fieldata.v} className='flex-1 rounded px-3 py-2 mx-1 text-bg-primary text-center placeholder:italic'
+                    setext(e.target.value.trim())
+                }} rows={linage} placeholder={fieldata.p} maxLength={999} onBlur={() => {
+                    if(text !== fieldata.v) onChanged(text)
+                }} />
+            : <input type='text' value={text} className='flex-1 rounded px-3 py-2 text-bg-primary text-center placeholder:italic'
                 onChange={e => {
-                    onChanged(e.target.value)
-                }} placeholder={fieldata.p} />
+                    setext(e.target.value.trim())
+                }} placeholder={fieldata.p} maxLength={99} onBlur={() => {
+                    if(text !== fieldata.v) onChanged(text)
+                }} />
         }
     </div>
 }
