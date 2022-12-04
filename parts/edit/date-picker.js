@@ -6,7 +6,7 @@ import { Popover } from '@headlessui/react'
 import { format, addMonths, subMonths } from 'date-fns'
 
 function ArrowButton({ onClicked, disabled, children }) {
-    return <button className='flex-none p-2 hover:bg-translucent disabled:text-bg-disabled'
+    return <button className='flex-none p-2 hover:bg-translucent disabled:opacity-50 disabled:hover:bg-transparent'
         onClick={onClicked} disabled={disabled}>
         {children}
     </button>
@@ -58,17 +58,17 @@ function Calendar({ selectedate, onSelected }) {
 }
 
 function DatePicker({ caption, ymdate, onChanged }) {
-    return <div className='flex flex-row w-fit'>
-        <span className='flex-none w-fit px-1 py-2'>{caption}</span>
+    return <div className='flex flex-row w-fit items-center'>
+        <span className='flex-none w-fit'>{caption}</span>
         <div className='flex-1'>
             <Popover className='relative'>
                 {({ open }) => <>
-                    <Popover.Button className='px-3 py-2 rounded w-fit hover:bg-primary-translucent border-accent-translucent'>
+                    <Popover.Button className='px-2 py-1 rounded w-fit hover:background-base border-translucent'>
                         <div className='inline align-middle pr-1'>{format(ymdate, 'yyyy年MM月dd日')}</div>
                         {open ? <ChevronUpIcon className="h-5 w-5 inline" aria-hidden='true' />
                             : <ChevronRightIcon className="h-5 w-5 inline" aria-hidden='true' />}
                     </Popover.Button>
-                    <Popover.Overlay className='fixed inset-1 bg-primary-translucent z-10' />
+                    <Popover.Overlay className='fixed inset-1 bg-translucent z-10' />
                     <Popover.Panel className='absolute z-20 w-80'>
                         {({ close }) =>
                             <Calendar selectedate={ymdate} onSelected={d => {

@@ -3,11 +3,9 @@ import { useEffect, useState } from 'react'
 import Layout from '../parts/layout'
 import LeaseList from '../parts/lease-list'
 import { del, entries } from "idb-keyval"
-import TopicsSide from '../parts/topics-side'
-import { rentPoints } from '../models/rent-points'
 import { FaceFrownIcon, FaceSmileIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
-import AccentIcon from '../parts/edit/accent-icon'
+import BorderedBlock from '../parts/edit/bordered-block'
 
 export default function Home() {
   const [warning, setWarning] = useState("")
@@ -22,31 +20,26 @@ export default function Home() {
       <title>{process.env.mainTitle}</title>
       <meta name="description" content="房屋租赁及注意事项" />
     </Head>
-    <Layout warning={warning}>
-      <h1 className="m-2 heading-1">{process.env.mainTitle}</h1>
-      <div className='grid grid-cols-3'>
-        {leases && leases.length > 0 ?
-          <div className='w-full xl:w-fit col-span-3 xl:col-span-2 text-bg-partion'>
-            <LeaseList leases={leases} onRemove={d => {
-              del(d).then(() => {
-                setLeases(prev => prev.filter(item => item[0] !== d))
-              }).catch(e => {
-                setWarning("Failed to delete a lease")
-              })
-            }} />
-          </div> : <div className='w-full py-8 col-span-3 xl:col-span-2 text-bg-partion flex flex-col items-center'>
-            <div className='p-2 mx-3 text-lg w-fit'>
-              <div className='inline align-middle'>目前没有合同</div>
-              <FaceFrownIcon className='w-5 h-5 inline' />
-            </div>
-            <Link href='/edit' className='text-lg'>
-              <AccentIcon picon={FaceSmileIcon} label='新建一个！' />
-            </Link>
+    <Layout warning={warning} heading={process.env.mainTitle}>
+      {leases && leases.length > 0
+        ? <LeaseList leases={leases} onRemove={d => {
+          del(d).then(() => {
+            setLeases(prev => prev.filter(item => item[0] !== d))
+          }).catch(e => {
+            setWarning("Failed to delete a lease")
+          })
+        }} />
+        : <div className='flex flex-col items-center'>
+          <div className='p-2 mx-3 text-lg w-fit'>
+            <div className='inline align-middle'>目前没有合同</div>
+            <FaceFrownIcon className='w-5 h-5 inline' />
           </div>
-        }
-        <div className="hidden xl:block w-96 my-8 col-span-1 z-20 justify-self-end">
-          <TopicsSide points={rentPoints} />
+          <Link href='/edit' className='text-lg'>
+            <BorderedBlock picon={FaceSmileIcon} label='新建一个！' />
+          </Link>
         </div>
+      }
+      <div className='m-1'>
       </div>
     </Layout>
   </>

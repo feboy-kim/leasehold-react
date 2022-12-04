@@ -1,10 +1,10 @@
 import { get, update } from "idb-keyval";
 import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Layout from "../../parts/layout";
 import LeaseEdit from "../../parts/lease-edit"
+import { ShareIcon } from '@heroicons/react/24/outline'
 
 function Edit() {
     const router = useRouter()
@@ -24,7 +24,6 @@ function Edit() {
     useEffect(() => {
         if (theId) {
             get(theId).then(d => {
-                // setOrign(d)
                 setLease(d)
             }).catch(e => {
                 setWarning('Failed to get the lease')
@@ -38,23 +37,20 @@ function Edit() {
             setWarning("Failed to save the lease")
         })
     }
+    const exportLease = () => {
+        router.push(`/view/${theId}`)
+    }
     return <>
         <Head>
             <title>修改合同</title>
             <meta name="description" content="修改房屋租约合同" />
         </Head>
-        <Layout warning={warning}>
-            <div className="relative">
-                <h2 className="p-2 heading-2">修改租约（租房合同）</h2>
-                {theId && <Link href={`/view/${theId}`}
-                    className="px-3 py-2 rounded hover:text-bg-accent absolute top-0 right-0">
-                    <span className='font-semibold'>预览 》</span>
-                </Link>
-                }
-            </div>
+        <Layout warning={warning} heading='修改租约（租房合同）'
+            lastent={{ title: '预览合同并导出PDF文件', disabled: !theId, onClick: () => exportLease(), picon: ShareIcon, label: "预览" }}>
             {lease && <LeaseEdit lease={lease} onChanged={d => {
                 putLease(d)
             }} />}
+            <p className="p-2 text-center opacity-75">每个字段的修改将立即得以保存</p>
         </Layout>
     </>
 }

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 
-function Shortext({ shortext, caption, maxLen, theClass, placeholder, onChanged }) {
+function TextEdit({ shortext, caption, maxLen, theClass, placeholder, onChanged }) {
     const [text, setext] = useState(shortext)
     return <div className={theClass}>
-        <label className='flex flex-row'>
+        <label className='flex flex-row sm:flex-col'>
             <span className='flex-none self-center'>{caption}</span>
             <input type='text' className='flex-1 min-w-0 rounded p-1 foreground-base background-base text-center placeholder:italic'
                 onChange={e => {
@@ -16,7 +16,7 @@ function Shortext({ shortext, caption, maxLen, theClass, placeholder, onChanged 
     </div>
 }
 
-Shortext.propTypes = {
+TextEdit.propTypes = {
     shortext: PropTypes.string.isRequired,
     maxLen: PropTypes.number,
     caption: PropTypes.string.isRequired,
@@ -24,10 +24,10 @@ Shortext.propTypes = {
     theClass: PropTypes.string,
     onChanged: PropTypes.func.isRequired
 }
-Shortext.defaultProps = {
+TextEdit.defaultProps = {
     maxLen: 8,
     shortext: '',
     placeholder: ''
 }
 
-export default Shortext
+export default TextEdit
