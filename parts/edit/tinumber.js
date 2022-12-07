@@ -1,21 +1,17 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
 
 function Tinumber({ theNumber, caption, maxNumber, minNumber, title, postfix, theClass, onChanged }) {
-    const [num, setNum] = useState(theNumber)
 
     return <div className={theClass}>
-        <label>
-            {caption}
+        <label className=' flex flex-nowrap items-center'>
+            <span className='pr-1'>{caption}</span>
             <input type="number" className='rounded p-1 foreground-base background-base text-center'
-                value={num} onChange={e => {
+                value={theNumber} onChange={e => {
                     const n = Number(e.target.value)
-                    if (!isNaN(n) && n >= 0 && n <= maxNumber) setNum(n)
-                }} min={minNumber} max={maxNumber} onBlur={() => {
-                    if (num !== theNumber) onChanged(num)
-                }} title={title} />
+                    if (!isNaN(n) && n >= 0 && n <= maxNumber) onChanged(n)
+                }} min={minNumber} max={maxNumber} title={title} />
+            <span className='pl-1'>{postfix}</span>
         </label>
-        <span className='pl-1 self-center'>{postfix}</span>
     </div>
 }
 

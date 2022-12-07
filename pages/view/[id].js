@@ -3,9 +3,8 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import Layout from "../../parts/layout"
 import { get } from "idb-keyval";
-import { PencilSquareIcon } from '@heroicons/react/24/outline'
+import { InformationCircleIcon, PencilSquareIcon, PrinterIcon } from '@heroicons/react/24/outline'
 import LeaseView from "../../parts/lease-view"
-import ViewArticle from "../../parts/view/view-article";
 
 function View() {
     const router = useRouter()
@@ -36,32 +35,15 @@ function View() {
         </Head>
         <Layout warning={warning} heading='浏览合同'
             lastent={{ title: '修改合同', onClick: () => alterLease(), picon: PencilSquareIcon, label: "修改" }}>
+            <p className="p-2 m-2 border-b text-sm print:hidden opacity-75 max-w-4xl md:mx-auto">
+                <InformationCircleIcon className="w-5 h-5 inline" />
+                <span className="inline align-middle pl-1">以下为合同正文：</span>
+            </p>
             {lease && <LeaseView lease={lease} />}
-            <div className='p-1 max-w-4xl md:mx-auto'>
-                <ViewArticle caption="签字处">
-                    <div className='grid gap-1 grid-cols-2'>
-                        <p className="col-span-2">本合同一式两份，甲乙双方各持一份，合同自双方签字并留指印之日起生效。</p>
-                        <div>
-                            <p className="py-1">甲方：</p>
-                            <p className='flex flex-row gap-1'>
-                                <span className='w-fit'>签于：</span>
-                                <span className='w-16 text-right'>年</span>
-                                <span className='w-8 text-right'>月</span>
-                                <span className='w-8 text-right'>日</span>
-                            </p>
-                        </div>
-                        <div>
-                            <p className="py-1">乙方：</p>
-                            <p className='flex flex-row gap-1'>
-                                <span className='w-fit'>签于：</span>
-                                <span className='w-16 text-right'>年</span>
-                                <span className='w-8 text-right'>月</span>
-                                <span className='w-8 text-right'>日</span>
-                            </p>
-                        </div>
-                    </div>
-                </ViewArticle>
-            </div>
+            <p className="p-2 m-2 border-t text-sm print:hidden opacity-75 max-w-4xl md:mx-auto">
+                <PrinterIcon className="w-5 h-5 inline" />
+                <span className="inline align-middle pl-1">使用浏览器中的打印功能或其他工具可以导出合同的PDF文件。</span>
+            </p>
         </Layout>
     </>
 }
