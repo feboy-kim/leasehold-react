@@ -1,0 +1,13 @@
+[Unit]
+Description=Leasehold assistant web Server
+After=network.target
+
+[Service]
+WorkingDirectory=/home/feboy/Public/leasehold-react
+ExecStartPre=/usr/bin/npm install
+ExecStartPre=/usr/bin/npm run build
+ExecStart=/usr/bin/npm run start
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -59,7 +59,7 @@ function Calendar({ selectedate, onSelected }) {
 
 function DatePicker({ caption, ymdate, onChanged }) {
     return <div className='flex flex-row w-fit items-center'>
-        <span className='flex-none w-fit'>{caption}</span>
+        <span className='flex-none w-fit pr-1'>{caption}</span>
         <div className='flex-1'>
             <Popover className='relative'>
                 {({ open }) => <>

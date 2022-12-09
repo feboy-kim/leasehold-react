@@ -3,9 +3,9 @@ import { ChevronRightIcon, ChevronUpIcon } from "@heroicons/react/24/solid"
 import { Fragment } from "react"
 import PropTypes from 'prop-types'
 
-function ListCombox({ items, caption, selected, onSelect }) {
-    return <div className='flex flex-row items-center'>
-        <p className='flex-none'>{caption}</p>
+function ListCombox({ items, caption, selected, title, onSelect }) {
+    return <div className='flex flex-row items-center' title={title}>
+        <p className='flex-none pr-1'>{caption}</p>
         <Combobox value={selected} onChange={onSelect}>
             {({ open }) => <div className="relative">
                 <Combobox.Button className='px-2 py-1 border-translucent rounded hover:background-base'>
@@ -32,6 +32,7 @@ function ListCombox({ items, caption, selected, onSelect }) {
 ListCombox.propTypes = {
     items: PropTypes.array.isRequired,
     caption: PropTypes.string.isRequired,
+    title: PropTypes.string,
     selected: PropTypes.string,
     onSelect: PropTypes.func.isRequired
 }

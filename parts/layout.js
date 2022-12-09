@@ -45,7 +45,8 @@ function Layout({ children, warning, heading, lastent }) {
         <footer className='m-1 print:hidden'>
             <div className='p-1 flex flex-row gap-1'>
                 <VectorFeboy factor={1} />
-                {format(new Date(), 'yyyy')}
+                <span className='px-1 inline align-middle'>Seant</span>
+                <span className='inline align-middle'>{format(new Date(), 'yyyy')}</span>
             </div>
         </footer>
     </div>

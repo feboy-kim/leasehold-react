@@ -3,10 +3,10 @@ import { CheckIcon } from "@heroicons/react/24/solid"
 import { MinusCircleIcon } from "@heroicons/react/24/outline"
 import PropTypes from 'prop-types'
 
-function BoolRadios({caption, title, trueLabel, falseLabel, selected, onSelect }) {
+function BoolRadios({ caption, title, trueLabel, falseLabel, selected, onSelect }) {
     return <RadioGroup value={selected} onChange={onSelect} title={title}>
-        <RadioGroup.Label className='px-1'>{caption}</RadioGroup.Label>
-        <div className="flex">
+        <div className="flex gap-1 flex-nowrap">
+            <RadioGroup.Label className='p-1'>{caption}</RadioGroup.Label>
             <RadioGroup.Option value={true}>
                 <div className='p-1 hover:text-bg-accent'>
                     <div className="inline align-middle">{trueLabel}</div>

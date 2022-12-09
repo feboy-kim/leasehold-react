@@ -17,12 +17,12 @@ function percentages(firstext) {
     ]
 }
 
-function PercentList({ caption, firstext, selectedIndex, onSelectIndex, theClass }) {
+function PercentList({ caption, firstext, selectedIndex, title, onSelectIndex, theClass }) {
     const items = percentages(firstext)
     return <div className={theClass}>
         <ListCombox items={items} caption={caption} selected={items[selectedIndex]} onSelect={it => {
             onSelectIndex(items.indexOf(it))
-        }} />
+        }} title={title} />
     </div>
 }
 
@@ -30,6 +30,7 @@ PercentList.propTypes = {
     caption: PropTypes.string,
     firstext: PropTypes.string,
     theClass: PropTypes.string,
+    title: PropTypes.string,
     selectedIndex: PropTypes.number,
     onSelectIndex: PropTypes.func.isRequired
 }
