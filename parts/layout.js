@@ -16,7 +16,7 @@ function Layout({ children, warning, heading, lastent }) {
             <nav className='col-span-4 lg:col-span-3 flex flex-row gap-1 justify-between items-center'>
                 <div className='flex-none'>
                     <Link href="/">
-                        <VectorBrand factor={2} />
+                        <VectorBrand factor={2} title='回首页' />
                     </Link>
                 </div>
                 {warning

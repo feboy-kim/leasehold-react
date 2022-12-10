@@ -18,7 +18,7 @@ export default function Home() {
   return <>
     <Head>
       <title>{process.env.mainTitle}</title>
-      <meta name="description" content="房屋租赁及注意事项" />
+      <meta name="description" content="房屋租赁及合同" />
     </Head>
     <Layout warning={warning} heading={process.env.mainTitle}>
       {leases && leases.length > 0

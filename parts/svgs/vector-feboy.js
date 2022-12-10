@@ -7,17 +7,17 @@ function VectorFeboy({ factor }) {
     return <svg width={dimension} height={dimension} viewBox='0,0,24,24' xmlns="http://www.w3.org/2000/svg">
         <defs>
             <linearGradient id='lg1'>
-                <stop stopColor='#a5b4fc' offset="0%" />
+                <stop stopColor='#4f46e5' offset="0%" />
                 <stop stopColor='#6366f1' offset="100%" />
             </linearGradient>
             <linearGradient id='lg2'>
                 <stop stopColor='#a855f7' offset="0%" />
-                <stop stopColor='#d8b4fe' offset="100%" />
+                <stop stopColor='#9333ea' offset="100%" />
             </linearGradient>
         </defs>
-        <title>Feboy</title>
-        <path d={pathData} stroke='url(#lg2)' strokeWidth={factor + 1} fill='transparent' strokeLinecap='round' />
-        <circle cx={12} cy={12} r='10' stroke='url(#lg1)' strokeWidth={factor} fill='transparent' />
+        <title>J.H</title>
+        <path d={pathData} stroke='url(#lg2)' strokeWidth={factor + 2} fill='transparent' strokeLinecap='round' />
+        <circle cx={12} cy={12} r='10' stroke='url(#lg1)' strokeWidth={factor + 1} fill='transparent' />
     </svg>
 }
 

@@ -4,7 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-    mainTitle: '租房那些事儿'
+    mainTitle: '租约帮' // or 租约助手 or 租房签约助手
   }
 }
 

@@ -52,7 +52,7 @@ function LeaseView({ lease }) {
                 如双方在租赁期满后有意续约而不签新约，乙方应提前一个月知会甲方并约定续约期限。
             </p>
         </ViewArticle>
-        <ViewArticle caption='四. 租金、滞纳金与押金'>
+        <ViewArticle caption='四. 租金与押金'>
             <p>
                 双方议定月租金为<span className='px-1'>{lease.rentFee.amount}</span>元
                 (<span className='px-1'>{lease.rentFee.sinote}</span>)
@@ -148,20 +148,18 @@ function LeaseView({ lease }) {
                 <p className="col-span-2">本合同一式两份，甲乙双方各执一份，合同自双方签字之日起生效。</p>
                 <div>
                     <p className="py-1">甲方：</p>
-                    <p className='flex flex-row gap-1'>
-                        <span className='w-fit'>签于：</span>
-                        <span className='w-16 text-right'>年</span>
-                        <span className='w-8 text-right'>月</span>
-                        <span className='w-8 text-right'>日</span>
+                    <p className='px-1 flex flex-row gap-1 justify-end'>
+                        <span className='w-20 text-right'>年</span>
+                        <span className='w-10 text-right'>月</span>
+                        <span className='w-10 text-right'>日</span>
                     </p>
                 </div>
                 <div>
                     <p className="py-1">乙方：</p>
-                    <p className='flex flex-row gap-1'>
-                        <span className='w-fit'>签于：</span>
-                        <span className='w-16 text-right'>年</span>
-                        <span className='w-8 text-right'>月</span>
-                        <span className='w-8 text-right'>日</span>
+                    <p className='px-1 flex flex-row gap-1 justify-end'>
+                        <span className='w-20 text-right'>年</span>
+                        <span className='w-10 text-right'>月</span>
+                        <span className='w-10 text-right'>日</span>
                     </p>
                 </div>
             </div>
