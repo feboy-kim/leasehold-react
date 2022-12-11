@@ -1,10 +1,11 @@
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { leaseTitles } from '../models/lease-ready'
 import ViewArticle from './view/view-article'
 import { addMonths, format } from 'date-fns'
+import { forwardRef } from 'react'
 
-function LeaseView({ lease }) {
-    return <div className='p-1 max-w-4xl md:mx-auto'>
+function LeaseView({ lease }, ref) {
+    return <div className='p-1 max-w-4xl md:mx-auto' ref={ref}>
         <h2 className='p-1 m-1 heading-2 print:heading-3'>{leaseTitles[lease.tIndex]}</h2>
         <p className='px-2 py-1 print:text-sm'>出租方为甲方，承租方为乙方。</p>
         <div className='flex flex-row pl-2 py-1 gap-1 print:text-sm'>
@@ -167,8 +168,4 @@ function LeaseView({ lease }) {
     </div >
 }
 
-LeaseView.propTypes = {
-    lease: PropTypes.object.isRequired
-}
-
-export default LeaseView
+export default forwardRef(LeaseView)
