@@ -41,7 +41,7 @@ function LeaseEdit({ lease, onChanged }) {
             }} placeholder="产权证号、房屋面积或其他" maxLen={72} theClass='w-full sm:w-2/3' />
         </div>
         <GroupBox titlead='租赁约定'>
-            <div className='basis-full sm:basis-4/7 md:basis-1/2 flex flex-row gap-1'>
+            <div className='basis-full sm:basis-4/7 flex flex-row gap-1'>
                 <Tinumber theNumber={lease.tenancy.peopless} caption="限住人数" onChanged={d => {
                     onChanged({ tenancy: { ...lease.tenancy, peopless: d } })
                 }} postfix='人' maxNumber={99} theClass='self-end' />
@@ -51,7 +51,7 @@ function LeaseEdit({ lease, onChanged }) {
             </div>
             <TextEdit shortext={lease.tenancy.restrict} caption="其他限制" onChanged={d => {
                 onChanged({ tenancy: { ...lease.tenancy, restrict: d } })
-            }} placeholder='禁养宠物或仅限居住' maxLen={20} theClass='basis-full sm:basis-3/7 md:basis-1/2' />
+            }} placeholder='禁养宠物或仅限居住' maxLen={20} theClass='basis-full sm:basis-3/7' />
         </GroupBox>
         <GroupBox titlead='租期'>
             <DatePicker caption='开始日期' ymdate={lease.tenancy.start} onChanged={d => {
